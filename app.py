@@ -19,7 +19,7 @@ with open("ml-100k/u.item", encoding="latin-1") as file:
 additional_data_movie = sc.broadcast(additional_data_movie)
 
 ratings = sc \
-    .textFile(r"ml-100k\u.data") \
+    .textFile(r"ml-100k/u.data") \
     .map(lambda x: x.split("\t"))
 
 data = ratings \
