@@ -1,4 +1,4 @@
 flask
 pyspark
 findspark
-flask uwsgi
+uwsgi
