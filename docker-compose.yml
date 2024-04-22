@@ -15,7 +15,7 @@ services:
       - SPARK_WORKLOAD=master
     restart: always
   spark-worker-a:
-    image: spark-cluster-dfile:latest
+    image: project_rdd:latest
     ports:
       - "9091:8080"
       - "7000:7000"
@@ -33,7 +33,7 @@ services:
        - /home/ubuntu-user/spark_cluster_1_no_hadoop:/home
     restart: always
   spark-worker-b:
-    image: spark-cluster-dfile:latest
+    image: project_rdd:latest
     ports:
       - "9092:8080"
       - "7001:7000"
