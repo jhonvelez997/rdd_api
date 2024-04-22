@@ -54,10 +54,10 @@ ln -sf /dev/stdout $SPARK_WORKER_LOG
 
 COPY start-spark.sh /
 
-COPY app.py /home/app.py
-COPY templates /home/templates
-COPY static /home/static
-COPY ml-100k /home/ml-100k
+ADD app.py /home/app.py
+ADD templates /home/templates
+ADD static /home/static
+ADD ml-100k /home/ml-100k
 
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
 
