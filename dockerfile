@@ -64,5 +64,6 @@ ADD ml-100k /app/ml-100k
 WORKDIR /app
 
 #CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
-CMD ["gunicorn", "app:app", "-b", "0.0.0.0:8000"]
+#CMD ["gunicorn", "app:app", "-b", "0.0.0.0:8000"]
+CMD ["uwsgi", "--ini", "wsgi.ini"]
 
