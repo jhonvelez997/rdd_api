@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style_explore.css') }}">
+      <title>Explore los endpoints</title>
+   </head>
+   <body>
+      {% for i in range(5) %}
+      <br>
+      {% endfor %}
+
+      <div class ="head">
+        <div class="button_back_div">
+            <a href="/"><img src="{{ url_for('static', filename='images/back.png') }}" style width="40px" height="40px"></a>
+        </div>
+        <div class="titulo_principal">
+            <h1>Explora los endpoints</h1>
+        </div>
+      </div>
+      {% for i in range(7) %}
+        <br>
+      {% endfor %}
+      <div class = "inst">
+         <p>Haz click en los endpoints listados abajos para expandir o colapsar los detalles.</p>
+      </div>
+      <div class="main_div">
+         <div class="endpoint_1">
+            <details>
+               <summary>
+                  /get_mv_rating_api
+                  <span class="icon"></span>
+               </summary>
+               <p>Usa este endpoint para obtener peliculas filtrando por el rating </p>
+               <p>Parametros</p>
+               <ul>
+                  <li>rating : Númerico </li>
+                  <li>Ejempolo: http://localhost:8000/get_mv_rating_api?rating=4.3</li>
+               </ul>
+            </details>
+            <hr>
+         </div>
+         {% for i in range(2) %}
+         <br>
+         {% endfor %}
+         <br>
+         <div>
+            <details>
+               <summary>
+                  /get_dist
+               </summary>
+               <p>Usa este endpoint para ver el conteo de peliculas por rating </p>
+               <p>Parametros</p>
+               <ul>
+                  <li>Este endpoint no recibe parametros </li>
+                  <li>Ejempolo: http://localhost:8000/get_dist</li>
+               </ul>
+            </details>
+         </div>
+         <hr>
+         {% for i in range(2) %}
+         <br>
+         {% endfor %}
+         <br>
+         <div>
+            <details>
+               <summary>
+                  /get_mv_yr
+               </summary>
+               <p>Usa este endpoint para obtener peliculas filtrando por el rating </p>
+               <p>Parametros</p>
+               <ul>
+                  <li>year: Númerico </li>
+                  <li>Ejempolo: http://localhost:8000/get_mv_yr?year=1994</li>
+               </ul>
+            </details>
+         </div>
+         <hr>
+         {% for i in range(2) %}
+         <br>
+         {% endfor %}
+         <br>
+         <div>
+            <details>
+               <summary>
+                  /get_movie_by_genre
+               </summary>
+               <p>Usa este endpoint para obtener peliculas filtrando por el genero </p>
+               <p>Parametros</p>
+               <ul>
+                  <li>genre: alfabetico </li>
+                  <li>Ejempolo: http://localhost:8000/get_movie_by_genre?genre=adventure</li>
+               </ul>
+            </details>
+         </div>
+         <hr>
+         {% for i in range(2) %}
+         <br>
+         {% endfor %}
+      </div>
+   </body>
+</html>
