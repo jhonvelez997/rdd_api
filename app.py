@@ -152,4 +152,4 @@ def get_movie_by_genre():
             .sortBy(lambda x : -x[1])
         return jsonify(res_.collect()), 200
         
-app.run()
+app.run(host="0.0.0.0", port=8000, debug=True)
