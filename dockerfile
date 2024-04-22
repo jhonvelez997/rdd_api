@@ -67,4 +67,4 @@ ENV FLASK_APP=app.py
 
 #CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
 
-CMD ["flask", "run"]
+CMD ["python3", "app.py"]
