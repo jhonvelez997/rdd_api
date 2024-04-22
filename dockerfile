@@ -61,5 +61,8 @@ ADD templates /app/templates
 ADD static /app/static
 ADD ml-100k /app/ml-100k
 
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+WORKDIR /app
+
+#CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf"]
+CMD ["gunicorn", "app:app", "-b", "0.0.0.0:8000"]
 
