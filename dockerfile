@@ -4,8 +4,6 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y curl vim wget software-properties-common ssh net-tools ca-certificates python3 python3-pip
 
-RUN update-alternatives --install "/usr/bin/python" "python" "$(which python3)"
-
 ENV SPARK_VERSION=3.5.1 \
 HADOOP_VERSION=3 \
 SPARK_HOME=/opt/spark \
