@@ -63,18 +63,21 @@ def explore():
 
 @app.route("/get_mv_rating_api")
 def get_mv_rating_api():
-    _rat = float(request.args.get("rating"))
-    try:
-        _rat = float(_rat)
-    except:
-        return jsonify({"Mensjae":f"El valor ingresado no fue aceptado ({_rat}), intenta con un entero o decimal separado por punto"}), 404
-    if _rat > 5 or _rat < 0:
-        return jsonify({"Mensjae":f"Error, debes ingresar un rating entre 1 y 5 . Ingresaste({_rat})"})
+    _rat = request.args.get("rating")
+    if _rat != None :
+        try:
+            _rat = float(_rat)
+        except:
+            return jsonify({"Mensjae":f"El valor ingresado no fue aceptado ({_rat}), intenta con un entero o decimal separado por punto"}), 404
+        if _rat > 5 or _rat < 0:
+            return jsonify({"Mensjae":f"Error, debes ingresar un rating entre 1 y 5 . Ingresaste({_rat})"})
+        else:
+            res = data.filter(lambda x :x[1] >=_rat ) \
+                .map(lambda x: [x[3],x[4],x[1]]).sortBy(lambda x : -x[2]) \
+                .collect()
+            return jsonify(res)
     else:
-        res = data.filter(lambda x :x[1] >=_rat ) \
-            .map(lambda x: [x[3],x[4],x[1]]).sortBy(lambda x : -x[1]) \
-            .collect()
-        return jsonify(res)
+        return jsonify({"Mensjae":f"Error, argumento no ingresadoo no es valido - Revisa la documentación"})
 
 @app.route("/get_dist")
 def get_dist_api():
@@ -84,35 +87,38 @@ def get_dist_api():
 @app.route("/get_mv_yr")
 def get_mv_year():
     yr = request.args.get("year")
-    try:
-        year = float(yr)
-        print(year)
-    except:
-        return jsonify(
-            {
-                "Mensaje" : f"Tienes que usar un número. Recuerda no usar comas ni puntos. Tu argumento de busqueda fue : {yr}"
-                }
-            ), 404 
-    if year < 1800 or year > 2025 :
-        return jsonify(
-            {
-                "Mensaje" : f"Por favor ingresa un año entre 1800 y 2025, el año ingresado fue : {yr}"
-                }
-            ), 404 
-    else:
-        resp_data = data \
-            .filter(lambda x: x[-1] == yr) \
-            .map(lambda x: x[0:7]).sortBy(lambda x : -x[1]) \
-            .collect()
-        if len(resp_data)  == 0:
+    
+    if yr !=None:
+        try:
+            year = float(yr)
+            print(year)
+        except:
             return jsonify(
                 {
-                    "Mensaje" : f"No Hay peliculas para el año seleccionado : {yr}"
+                    "Mensaje" : f"Tienes que usar un número. Recuerda no usar comas ni puntos. Tu argumento de busqueda fue : {yr}"
+                    }
+                ), 404 
+        if year < 1800 or year > 2025 :
+            return jsonify(
+                {
+                    "Mensaje" : f"Por favor ingresa un año entre 1800 y 2025, el año ingresado fue : {yr}"
                     }
                 ), 404 
         else:
-            return jsonify(resp_data)
-
+            resp_data = data \
+                .filter(lambda x: x[-1] == yr) \
+                .map(lambda x: x[0:7]).sortBy(lambda x : -x[1]) \
+                .collect()
+            if len(resp_data)  == 0:
+                return jsonify(
+                    {
+                        "Mensaje" : f"No Hay peliculas para el año seleccionado : {yr}"
+                        }
+                    ), 404 
+            else:
+                return jsonify(resp_data)
+    else:
+        return jsonify({"Mensjae":f"Error, argumento no ingresadoo no es valido - Revisa la documentación"})
 
 @app.route("/get_movie_by_genre")
 def get_movie_by_genre():
